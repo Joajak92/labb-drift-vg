@@ -22,19 +22,20 @@ public class OrderController {
     }
 
     @GetMapping("/new")
-    public String newOrder() {
+    public String newOrder(Model model) {
+        model.addAttribute("order", new Order());
         return "orders/new-order";
     }
 
     @PostMapping()
     public String createOrder(@ModelAttribute Order order) {
         Order order1 = orderService.createOrder(order);
-        return "redirect:orders";
+        return "redirect:/orders";
     }
 
     @PutMapping("/{id}")
     public String updateOrder(@PathVariable Long id, @ModelAttribute Order order) {
-        Order order1 = orderService.updateOrder(id, order);
+        orderService.updateOrder(id, order);
         return "redirect:/orders";
     }
 
@@ -42,6 +43,6 @@ public class OrderController {
     public String showUpdateForm(@PathVariable Long id, Model model) {
         Order order = orderService.getOrder(id);
         model.addAttribute("order", order);
-        return "orders/new-order";
+        return "orders/update-order";
     }
 }

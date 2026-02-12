@@ -7,13 +7,11 @@
 <body>
 <h1>New order</h1>
 <form method="post" th:action="@{/orders}">
-    <input name="_method" type="hidden" value="PUT">
     <p>
         <label>Put in total amount</label>
-        <input name="totalAmount" th:value="${order.getTotalAmount()}" type="number">
+        <input name="totalAmount" type="text">
     </p>
-    <button type="submit">Update Order</button>
-
+    <button type="submit">Submit</button>
 </form>
 
 </body>
