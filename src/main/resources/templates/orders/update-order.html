@@ -6,11 +6,17 @@
 </head>
 <body>
 <h1>Update Order</h1>
-<form method="post" th:action="@{/orders}">
+<form method="post" th:action="@{/orders/{id}(id=${order.id})}">
+    <input name="_method" type="hidden" value="PUT">
+    <input name="id" th:value="${order.id}" type="hidden">
     <p>
-        <label>Put in total amount</label>
-        <input name="totalAmount" type="text">
+        <label>Put in amount</label>
+        <label>
+            <input name="totalAmount" th:value="${order.getTotalAmount()}"
+                   type="number">
+        </label>
     </p>
+    <button type="submit">Update Order</button>
 
 </form>
 
