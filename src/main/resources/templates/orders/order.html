@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Orders</title>
+    <link rel="stylesheet" th:href="@{/css/orders.css}">
 </head>
 <body>
 <h1>Orders</h1>
@@ -10,6 +11,13 @@
     <li th:each="o : ${order}">
         <span th:text="'id: ' + ${o.id}"></span>
         <span th:text="'Total Amount: ' + ${o.getTotalAmount()}"></span>
+
+        <span th:switch="${o.getStatus()}">
+             <span style="color: #856404;" th:case="1">Pending</span>
+            <span style="color: green;" th:case="2">Delivered</span>
+            <span style="color: red;" th:case="3">Cancelled</span>
+            <span style="color: orange;" th:case="4">Returned</span>
+        </span>
         <span th:text="'Created at: ' + ${o.getOrderDate()}"></span>
         <form method="post" style="display:inline"
               th:action="@{/orders/{id}(id=${o.id})}">
@@ -18,7 +26,9 @@
         </form>
     </li>
 
+
     <a href="http://localhost:8080/orders/new">Add a new order</a>
+
 
 </ul>
 

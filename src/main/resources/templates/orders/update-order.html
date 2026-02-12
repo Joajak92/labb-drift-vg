@@ -15,10 +15,15 @@
             <input name="totalAmount" th:value="${order.getTotalAmount()}"
                    type="number">
         </label>
+        <label>
+            <input name="status" th:value="${order.getStatus()}" type="number">
+        </label>
     </p>
     <button type="submit">Update Order</button>
 
+
 </form>
+
 
 </body>
 </html>
