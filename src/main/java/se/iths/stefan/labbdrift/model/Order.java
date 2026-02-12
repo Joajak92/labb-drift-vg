@@ -19,10 +19,19 @@ public class Order {
     @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate = LocalDateTime.now();
 
+    @Column(name = "status", nullable = false)
+    private Integer status = 1;  // Default pending
 
     public Order() {
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public LocalDateTime getOrderDate() {
         return orderDate;
