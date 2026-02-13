@@ -1,27 +1,30 @@
 package se.iths.stefan.labbdrift.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.stefan.labbdrift.exception.CustomerNotFoundException;
 import se.iths.stefan.labbdrift.model.Customer;
 import se.iths.stefan.labbdrift.repository.CustomerRepository;
+import se.iths.stefan.labbdrift.validator.CustomerValidator;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final CustomerValidator customerValidator;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, CustomerValidator customerValidator) {
         this.customerRepository = customerRepository;
+        this.customerValidator = customerValidator;
     }
 
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    public Customer findCustomer(Long id) {
+    public Customer getCustomer(Long id) {
         return customerRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("No such id: " + id));
+                .orElseThrow(() -> new CustomerNotFoundException("No such customer id: " + id));
     }
 
     public Customer createCustomer(Customer customer) {
@@ -36,4 +39,6 @@ public class CustomerService {
         customer.setId(id);
         return customerRepository.save(customer);
     }
+
+
 }

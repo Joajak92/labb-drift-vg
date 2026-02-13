@@ -10,15 +10,15 @@
 <form method="post" th:action="@{/customers}">
     <p>
         <label>First name: </label>
-        <input type="text" name="firstName">
+        <input type="text" name="firstName" required>
     </p>
     <p>
         <label>Last name: </label>
-        <input type="text" name="lastName">
+        <input type="text" name="lastName" required>
     </p>
     <p>
         <label>Email: </label>
-        <input type="text" name="email">
+        <input type="text" name="email" required>
     </p>
     <button type="submit">Save customer</button>
 </form>
