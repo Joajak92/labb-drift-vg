@@ -11,15 +11,15 @@
     <input type="hidden" name="id" th:value="${customer.id}">
     <p>
         <label>Enter your new firstname</label>
-        <input name="firstName" type="text">
+        <input name="firstName" type="text" required>
     </p>
     <p>
         <label>Enter your new lastname</label>
-        <input name="lastName" type="text">
+        <input name="lastName" type="text" required>
     </p>
     <p>
         <label>Enter your new email</label>
-        <input name="email" type="text">
+        <input name="email" type="text" required>
     </p>
     <p>
         <button type="submit">Uppdate customer info</button>

@@ -27,6 +27,12 @@ public class CustomerController {
         return "customers/create-customer";
     }
 
+    @GetMapping("/{id}")
+    public String getCustomer(@PathVariable Long id, Model model) {
+        model.addAttribute("customer", customerService.getCustomer(id));
+        return "customers/customer";
+    }
+
     @PostMapping
     public String createCustomer(@ModelAttribute Customer customer) {
         Customer customer2 = customerService.createCustomer(customer);
@@ -41,7 +47,7 @@ public class CustomerController {
 
     @GetMapping("/{id}/edit")
     public String showUpdateForm(@PathVariable Long id, Model model) {
-        Customer customer = customerService.findCustomer(id);
+        Customer customer = customerService.getCustomer(id);
         model.addAttribute("customer", customer);
         return "customers/edit-customer";
     }
