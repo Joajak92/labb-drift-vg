@@ -28,6 +28,9 @@ public class CustomerService {
     }
 
     public Customer createCustomer(Customer customer) {
+        customerValidator.validateCustomerFirstName(customer.getFirstName());
+        customerValidator.validateCustomerLastName(customer.getLastName());
+        customerValidator.validateCustomerEmail(customer.getEmail());
         return customerRepository.save(customer);
     }
 
@@ -36,6 +39,9 @@ public class CustomerService {
     }
 
     public Customer updateCustomer(Long id, Customer customer) {
+        customerValidator.validateCustomerFirstName(customer.getFirstName());
+        customerValidator.validateCustomerLastName(customer.getLastName());
+        customerValidator.validateCustomerEmail(customer.getEmail());
         customer.setId(id);
         return customerRepository.save(customer);
     }
